@@ -35,6 +35,30 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseStatusCodePages(context =>
+{
+    var agent = context.HttpContext.Request.Headers["User-Agent"].ToString().ToLower();
+
+    if (agent.Contains("android") || agent.Contains("iphone"))
+    {
+        return Task.CompletedTask;
+    }
+
+    var response = context.HttpContext.Response;
+
+    if (response.StatusCode == (int)HttpStatusCode.Unauthorized)
+    {
+        context.HttpContext.Response.Cookies.Append("redirectUrl", context.HttpContext.Request.Path + context.HttpContext.Request.QueryString);
+        response.Redirect("/Account/SignIn");
+    }
+    else
+    {
+        response.Redirect($"/HttpError/{response.StatusCode}");
+    }
+
+    return Task.CompletedTask;
+});
+
 app.UseHttpsRedirection();
 
 app.UseStaticFiles();

@@ -1,0 +1,18 @@
+﻿@model ErrorVM
+@{
+    Layout = "_LayoutError";
+    ViewData["Title"] = "Erro";
+
+    if (Model == null)
+    {
+        <div>
+            <h2>Model está nulo.</h2>
+        </div>
+    }
+    else
+    {
+        <h1 class="font-weight-boldest text-dark-75 mt-15" style="font-size: 20rem">@Html.Raw(Model.ErrorCode)</h1>
+        <h6 class="text-muted font-weight-normal mb-3">@Html.Raw(Model.Title)</h6>
+        <h2 class="text-danger">@Html.Raw(Model.Message)</h2>
+    }
+}
