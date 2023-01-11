@@ -11,8 +11,8 @@
     }
     else
     {
-        <h1 class="font-weight-boldest text-dark-75 mt-15" style="font-size: 20rem">@Html.Raw(Model.ErrorCode)</h1>
-        <h6 class="text-muted font-weight-normal mb-3">@Html.Raw(Model.Title)</h6>
-        <h2 class="text-danger">@Html.Raw(Model.Message)</h2>
+        <h1 class="font-weight-boldest text-dark-75 mt-15" style="font-size: 20rem">@Model.ErrorCode</h1>
+        <h6 class="text-muted font-weight-normal mb-3">@Model.Title</h6>
+        <h2 class="text-danger">@Model.Message</h2>
     }
 }

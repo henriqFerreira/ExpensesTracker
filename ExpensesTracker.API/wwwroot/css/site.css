@@ -1,18 +1,63 @@
-html {
-  font-size: 14px;
+:root {
+    /* Base colors and shades */
+    --clr-base: #121212;
+    --clr-base-lt: #1E1E1E;
+    --clr-base-ltr: #292929;
+
+    /* Primary colors and shades */
+    --clr-primary: #3D426B;
+
+    /* Conditional colors and shades */
+    --clr-success: #77DD77;
+    --clr-success-shade-05: #77dd770c;
+    --clr-alert: #FF6961;
+    --clr-alert-shade-05: #FF69610c;
+    --clr-info: #3D426B;
+    --clr-info-shade-05: #3D426B0c;
+
+    /* Neutrals */
+    --clr-ntrl-max: #000000;
+    --clr-ntrl-min: #FFFFFF;
+
+    /* Font sizes */
+    --fs-label: 0.8rem;
+
+    /* Icons */
+    --icon-sm: 24px;
+    --icon-md: 28px;
+    --icon-lg: 32px;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Red Hat Diplay', sans-serif;
+    color: var(--clr-ntrl-min);
 }
 
 body {
-  margin-bottom: 60px;
+    background-color: var(--clr-base);
+}
+
+.main-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    padding: 1.1rem;
+    display: grid;
+    grid-template-columns: 2fr 7fr;
+    gap: 1.1rem;
+}
+
+.clean-link {
+    text-decoration: none;
+}
+
+.icon {
+    width: var(--icon-lg);
+    height: var(--icon-lg);
+    display: block;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
 }

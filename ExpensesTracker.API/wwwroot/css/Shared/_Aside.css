@@ -1,0 +1,83 @@
+﻿aside {
+	background-color: var(--clr-base-lt);
+	border-radius: 4px;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+aside hr {
+	border: none;
+	height: 2px;
+	padding: 0 20px;
+	color: var(--clr-base-ltr);
+	background-color: var(--clr-base-ltr);
+}
+
+.aside-profile {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 12px;
+	padding: 20px;
+}
+
+.aside-profile-photo {
+	width: 120px;
+	height: 120px;
+	padding: 10px;
+	border-radius: 50%;
+	background-color: var(--clr-base-ltr);
+}
+
+.aside-profile-name {
+	font-weight: 600;
+	font-size: 1rem;
+}
+
+.aside-profile-view {
+	font-weight: 300;
+	font-size: 0.9rem;
+}
+
+.aside-divisor {
+	padding: 0 20px;
+}
+
+.aside-area {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding-left: 20px;
+}
+
+.area-title {
+	font-size: var(--fs-label);
+	text-transform: uppercase;
+	color: var(--clr-base-ltr);
+}
+
+.selected-area {
+	background-color: var(--clr-base) !important;
+}
+
+.button-group {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 15px;
+	font-size: 1.05rem;
+	padding-block: 10px;
+	border-radius: 4px 0 0 4px;
+	overflow: hidden;
+}
+
+.aside-logout {
+	padding: 20px 10px;
+	margin: 20px;
+	border-radius: 4px;
+	text-align: center;
+	font-weight: bold;
+	background-color: var(--clr-primary);
+}
