@@ -14,4 +14,8 @@
     <ProjectReference Include="..\ExpensesTracker.DAO\ExpensesTracker.DAO.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\img\icons\" />
+  </ItemGroup>
+
 </Project>

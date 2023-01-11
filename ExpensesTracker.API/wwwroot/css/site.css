@@ -49,15 +49,24 @@ body {
     gap: 1.1rem;
 }
 
+/* <a> Modifiers */
 .clean-link {
     text-decoration: none;
 }
 
+/* Icons */
 .icon {
     width: var(--icon-lg);
     height: var(--icon-lg);
     display: block;
-    background-size: contain;
+    background-size: 90%;
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.icon-squares { background-image: url("../img/icons/icon-squares.svg"); }
+.icon-stockup { background-image: url("../img/icons/icon-stockup.svg"); }
+.icon-transaction { background-image: url("../img/icons/icon-transaction.svg"); }
+.icon-cards { background-image: url("../img/icons/icon-cards.svg"); }
+.icon-github { background-image: url("../img/icons/icon-github.svg"); }
+.icon-linkedin { background-image: url("../img/icons/icon-linkedin.svg"); }
