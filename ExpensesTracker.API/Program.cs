@@ -1,6 +1,7 @@
+using ExpensesTracker.DAO.Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Net;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
@@ -15,6 +16,13 @@ var services = builder.Services;
 
 var config = builder.Configuration;
 var env = builder.Environment;
+
+var connectionString = config.GetConnectionString(env.EnvironmentName);
+
+services.AddDbContext<ApplicationDbContext>(options =>
+{
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
+});
 
 // Add services to the container.
 services.AddControllersWithViews();
