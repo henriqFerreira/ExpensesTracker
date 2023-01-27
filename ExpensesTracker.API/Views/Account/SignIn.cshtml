@@ -1,6 +1,30 @@
 ﻿@{
-    Layout = null;
+    Layout = "_LayoutAuthentication";
     ViewData["Title"] = "Sign-In";
 }
 
-<h1>Sign-In</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/css/Account/SignIn.css" type="text/css" asp-append-version="true" />
+}
+
+<form method="POST" autocomplete="off">
+    <h2>Sign-in</h2>
+    <div class="input-group">
+        <label for="email">E-mail</label>
+        <input type="text" id="email" placeholder="E.g. loremipsum@dolorsit.com" />
+    </div>
+    <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" />
+        <a asp-controller="Account" asp-action="ForgotPassword">Forgot password?</a>
+    </div>
+    <div class="checkbox-group">
+        <input type="checkbox" id="remember-me"/>
+        <label for="remember-me">Remember-me</label>
+    </div>
+    <input type="submit" value="Sign-in"/> 
+    <hr />
+    <p>
+        Doesn't have an account? <a asp-controller="Account" asp-action="SignUp">Sign-up here</a>.
+    </p>
+</form>

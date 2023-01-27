@@ -34,7 +34,8 @@
     /* Font sizes */
     --fs-label-sm: 0.8rem;
     --fs-label-md: 0.9rem;
-    --fs-sm: 0.9rem;
+    --fs-text-sm: 0.9rem;
+    --fs-text-md: 1.1rem;
 
     /* Font weights */
     --fw-light: 300;
