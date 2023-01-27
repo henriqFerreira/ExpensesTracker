@@ -7,24 +7,33 @@
     <link rel="stylesheet" href="~/css/Account/SignIn.css" type="text/css" asp-append-version="true" />
 }
 
-<form method="POST" autocomplete="off">
+<form novalidate="novalidate" autocomplete="off" id="sign-in-form">
     <h2>Sign-in</h2>
     <div class="input-group">
         <label for="email">E-mail</label>
-        <input type="text" id="email" placeholder="E.g. loremipsum@dolorsit.com" />
+        <input type="text" id="email" name="email" placeholder="E.g. loremipsum@dolorsit.com" />
     </div>
     <div class="input-group">
         <label for="password">Password</label>
-        <input type="password" id="password" />
+        <input type="password" id="password" name="password" />
         <a asp-controller="Account" asp-action="ForgotPassword">Forgot password?</a>
     </div>
     <div class="checkbox-group">
         <input type="checkbox" id="remember-me"/>
         <label for="remember-me">Remember-me</label>
     </div>
-    <input type="submit" value="Sign-in"/> 
+    <input type="submit" name="sign-in-submit" value="Sign-in"/> 
     <hr />
     <p>
         Doesn't have an account? <a asp-controller="Account" asp-action="SignUp">Sign-up here</a>.
     </p>
 </form>
+
+@section Scripts {
+    <script src="~/js/Controllers/Account.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        $(() => {
+            AccountAPI.initSignIn();
+        });
+    </script>
+}
