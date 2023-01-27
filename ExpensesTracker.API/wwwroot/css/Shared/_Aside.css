@@ -53,7 +53,7 @@ aside hr {
 }
 
 .area-title {
-	font-size: var(--fs-label);
+	font-size: var(--fs-label-sm);
 	text-transform: uppercase;
 	color: var(--clr-base-ltr);
 }
@@ -76,7 +76,7 @@ aside hr {
 .aside-logout {
 	padding-block: 12px;
 	margin: 20px;
-	border-radius: 4px;
+	border-radius: var(--br-default);
 	text-align: center;
 	font-weight: bold;
 	background-color: var(--clr-primary);

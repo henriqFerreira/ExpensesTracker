@@ -26,6 +26,7 @@
   <ItemGroup>
     <Folder Include="Areas\" />
     <Folder Include="wwwroot\img\icons\" />
+    <Folder Include="wwwroot\img\backgrounds\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,102 @@
+﻿body {
+	background-image: url("../../img/backgrounds/authentication-bg.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+	display: grid;
+	align-content: center;
+}
+
+form {
+	max-width: 35%;
+	background-color: var(--clr-base-lt);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1.5em;
+	margin: auto;
+	padding: 1.8em;
+	border-radius: var(--br-default);
+}
+
+.input-group {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 0.7em;
+}
+
+.input-group input {
+	width: 100%;
+	padding: 1em;
+	outline: none;
+	border: none;
+	border-radius: var(--br-default);
+	font-size: var(--fs-text-sm);
+	background-color: var(--clr-base-ltr);
+	color: var(--clr-base);
+	transition: color 0.1s;
+}
+
+.input-group input:focus {
+	color: var(--clr-ntrl-min);
+}
+
+.input-group label {
+	font-size: var(--fs-label-md);
+	font-weight: var(--fw-light);
+}
+
+.input-group a {
+	text-align: end;
+	font-size: var(--fs-label-sm);
+}
+
+.checkbox-group {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 0.7em;
+	padding-inline: 0.5em;
+}
+
+.checkbox-group input {
+	appearance: none;
+	display: grid;
+	place-content: center;
+	width: 16px;
+	height: 16px;
+	border-radius: var(--br-default);
+	background-color: var(--clr-base-ltr);
+	overflow: hidden;
+}
+
+.checkbox-group input::before {
+	content: "";
+	width: 16px;
+	height: 16px;
+	transform: scale(0);
+	box-shadow: inset 2em 2em var(--clr-primary);
+	transition: transform .1s ease-in-out;
+}
+
+.checkbox-group input:checked::before {
+	transform: scale(1);
+}
+
+input[type="submit"] {
+	width: 100%;
+	padding-block: 0.8em;
+	border: none;
+	border-radius: var(--br-default);
+	background-color: var(--clr-primary);
+	font-size: var(--fs-text-md);
+	cursor: pointer;
+}
+
+hr {
+	border: none;
+	width: 100%;
+	height: 1px;
+	background-color: var(--clr-base-ltr);
+}
