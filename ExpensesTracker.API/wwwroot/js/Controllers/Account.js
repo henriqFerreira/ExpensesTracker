@@ -25,6 +25,7 @@ var AccountAPI = function () {
                 data: JSON.stringify(model),
                 success: function (data) {
 
+                    // TODO: Tratamento do resultado do request no 'if' abaixo (Sign-in)
                     if (data.Ok) {
                         console.log(data);
                     } else {
@@ -32,7 +33,7 @@ var AccountAPI = function () {
                     }
                 }
             })
-        })
+        }) 
     }
 
     return {
