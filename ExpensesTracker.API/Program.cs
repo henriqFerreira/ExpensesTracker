@@ -1,4 +1,8 @@
 using ExpensesTracker.DAO.Data;
+using ExpensesTracker.DAO.IRepository;
+using ExpensesTracker.DAO.IService;
+using ExpensesTracker.DAO.Repository;
+using ExpensesTracker.DAO.Service;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Net;
@@ -7,11 +11,15 @@ var builder = WebApplication.CreateBuilder(args);
 var services = builder.Services;
 
 #region Services
-    // Services scope
+
+services.AddScoped<IServiceTransactions, ServiceTransactions>();
+
 #endregion
 
 #region Repositories
-    // Repositories scope
+
+services.AddScoped<IRepositoryTransactions, RepositoryTransactions>();
+
 #endregion
 
 var config = builder.Configuration;
