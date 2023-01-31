@@ -1,0 +1,15 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace ExpensesTracker.DAO.Models.Views
+{
+    public class SignInVM
+    {
+        [Required(ErrorMessage = "O campo {0} é obrigatório!")]
+        [EmailAddress(ErrorMessage = "O email digitado não é válido!")]
+        public string Email { get; set; }
+
+        [Required(ErrorMessage = "O campo {0} é obrigatório!")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+    }
+}
