@@ -13,7 +13,7 @@ namespace ExpensesTracker.DAO.Service
             _transactionRepository = transactionRepository;
         }
 
-        public bool Adicionar(Transactions entity)
+        public bool Adicionar(Transaction entity)
         {
             throw new NotImplementedException();
         }
@@ -23,7 +23,7 @@ namespace ExpensesTracker.DAO.Service
             throw new NotImplementedException();
         }
 
-        public Transactions ObterPorId(int id)
+        public Transaction ObterPorId(int id)
         {
             throw new NotImplementedException();
         }

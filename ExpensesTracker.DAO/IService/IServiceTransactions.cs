@@ -2,7 +2,7 @@
 
 namespace ExpensesTracker.DAO.IService
 {
-    public interface IServiceTransactions : IService<Transactions>
+    public interface IServiceTransactions : IService<Transaction>
     {
 
     }
