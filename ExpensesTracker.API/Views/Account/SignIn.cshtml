@@ -1,4 +1,5 @@
-﻿@{
+﻿@model SignInVM
+@{
     Layout = "_LayoutAuthentication";
     ViewData["Title"] = "Sign-In";
 }
@@ -10,11 +11,11 @@
 <form novalidate="novalidate" autocomplete="off" id="sign-in-form">
     <h2>Sign-in</h2>
     <div class="input-group">
-        <label for="email">E-mail</label>
+        <label asp-for="Email"></label>
         <input type="text" id="email" name="email" placeholder="E.g. loremipsum@dolorsit.com" />
     </div>
     <div class="input-group">
-        <label for="password">Password</label>
+        <label asp-for="Password"></label>
         <input type="password" id="password" name="password" />
         <a asp-controller="Account" asp-action="ForgotPassword">Forgot password?</a>
     </div>
@@ -22,7 +23,7 @@
         <input type="checkbox" id="remember-me"/>
         <label for="remember-me">Remember-me</label>
     </div>
-    <input type="submit" name="sign-in-submit" value="Sign-in"/> 
+    <input type="button" name="sign-in-submit" value="Sign-in"/> 
     <hr />
     <p>
         Doesn't have an account? <a asp-controller="Account" asp-action="SignUp">Sign-up here</a>.

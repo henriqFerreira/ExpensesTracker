@@ -1,6 +1,52 @@
-﻿@{
-    Layout = null;
+﻿@model SignUpVM
+@{
+    Layout = "_LayoutAuthentication";
     ViewData["Title"] = "Sign-Up";
 }
 
-<h1>Sign-Up</h1>
+@section Styles {
+    <link rel="stylesheet" href="~/css/Account/SignUp.css" type="text/css" asp-append-version="true" />
+}
+
+<form novalidate="novalidate" autocomplete="off" id="sign-up-form">
+    <h2>Sign-up</h2>
+    <span id="form-step-counter"></span>
+    <div class="form-step active-step" data-index="0">
+        <div class="input-group">
+            <label asp-for="Name"></label>
+            <input type="text" name="name" placeholder="E.g. Lorem" />
+        </div>
+        <div class="input-group">
+            <label asp-for="LastName"></label>
+            <input type="text" name="lastname" placeholder="E.g. Ipsum dolor sit" />
+        </div>
+    </div>
+    <div class="form-step" data-index="1">
+        <div class="input-group">
+            <label asp-for="Email"></label>
+            <input type="text" name="email" placeholder="E.g. loremipsum@dolorsit.com" />
+        </div>
+        <div class="input-group">
+            <label asp-for="Password"></label>
+            <input type="password" name="password" />
+            <span class="input-hint">The password must contain at least 8 characters, including one special and one uppercase.</span>
+        </div>
+    </div>
+    <div class="form-buttons">
+        <input type="button" id="btn-prev" value="Previous" />
+        <input type="button" id="btn-next" name="sign-up-submit" value="Next" />
+    </div>
+    <hr />
+    <p>
+        Already have an account? <a asp-controller="Account" asp-action="SignIn">Sign-in here</a>.
+    </p>
+</form>
+
+@section Scripts {
+    <script src="~/js/Controllers/Account.js" asp-append-version="true"></script>
+    <script type="text/javascript">
+        $(() => {
+            AccountAPI.initSignUp();
+        });
+    </script>
+}
