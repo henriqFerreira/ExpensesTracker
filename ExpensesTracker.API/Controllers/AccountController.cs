@@ -9,8 +9,8 @@ namespace ExpensesTracker.API.Controllers
 {
     public class AccountController : Controller
     {
-        public UserManager<AspNetUser> _userManager;
-        public SignInManager<AspNetUser> _signInManager;
+        private UserManager<AspNetUser> _userManager;
+        private SignInManager<AspNetUser> _signInManager;
 
         public AccountController
             (

@@ -25,6 +25,7 @@ namespace ExpensesTracker.DAO.Models
         [StringLength(100, MinimumLength = 1, ErrorMessage = "O campo 'Password' deve ter entre 1 e 100 caracteres..")]
         public string Password { get; set; }
 
+        [ForeignKey("IdAspNetUser")]
         [InverseProperty("User")]
         public AspNetUser IdAspNetUserNavigation { get; set; }
     }

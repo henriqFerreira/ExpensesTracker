@@ -1,11 +1,13 @@
 using ExpensesTracker.DAO.Data;
 using ExpensesTracker.DAO.IRepository;
 using ExpensesTracker.DAO.IService;
+using ExpensesTracker.DAO.Models;
 using ExpensesTracker.DAO.Repository;
 using ExpensesTracker.DAO.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Net;
@@ -35,6 +37,10 @@ services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
+
+services.AddDefaultIdentity<AspNetUser>(options =>
+    options.SignIn.RequireConfirmedAccount = false
+).AddEntityFrameworkStores<ApplicationDbContext>();
 
 services.AddAuthentication(x =>
 {

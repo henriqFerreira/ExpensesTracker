@@ -18,6 +18,7 @@
 
     /* Primary colors and shades */
     --clr-primary: #3D426B;
+    --clr-primary-rgb: 61, 66, 107;
 
     /* Conditional colors and shades */
     --clr-success: #77DD77;

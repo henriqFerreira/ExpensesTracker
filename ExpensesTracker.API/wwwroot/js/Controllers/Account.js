@@ -36,9 +36,70 @@ var AccountAPI = function () {
         }) 
     }
 
+    var _SignUpForm = function () {
+        var validation;
+        var form = document.getElementById("sign-up-form");
+        var steps = document.querySelectorAll(".form-step");
+        var totalSteps = document.querySelectorAll(".form-step").length;
+        var currentStep = 0;
+        var btnPrev = document.getElementById("btn-prev");
+        var btnNext = document.getElementById("btn-next");
+
+        btnPrev.style.display = "none";
+
+        $('#btn-prev').on('click', function (e) {
+            if (currentStep > 0) {
+                steps[currentStep].classList.remove("active-step");
+                currentStep -= 1;
+                steps[currentStep].classList.add("active-step");
+            }
+
+            if (currentStep <= 0) {
+                btnPrev.style.display = "none";
+            } else {
+                btnPrev.style.display = "block";
+            }
+
+            if (currentStep < totalSteps - 1) {
+                btnNext.value = "Next";
+            } else {
+                btnNext.value = "Finish";
+            }
+        });
+
+        $('#btn-next').on('click', function (e) {
+            e.preventDefault();
+
+            if (currentStep != totalSteps - 1) {
+                steps[currentStep].classList.remove("active-step");
+                currentStep += 1;
+                steps[currentStep].classList.add("active-step");
+            }
+
+            if (currentStep <= 0) {
+                btnPrev.style.display = "none";
+            } else {
+                btnPrev.style.display = "block";
+            }
+
+            if (currentStep < totalSteps - 1) {
+                btnNext.value = "Next";
+            } else {
+                btnNext.value = "Finish";
+            }
+        });
+
+        $('input[value="Finish"]').on('click', function (e) {
+            e.preventDefault();
+        });
+    }
+
     return {
         initSignIn: function () {
             _SignInForm();
+        },
+        initSignUp: function () {
+            _SignUpForm();
         }
     }
 }();

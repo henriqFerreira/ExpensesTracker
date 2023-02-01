@@ -19,6 +19,18 @@ form {
 	border-radius: var(--br-default);
 }
 
+.form-step {
+	min-width: 100%;
+	display: none;
+}
+
+	.form-step.active-step {
+		display: flex;
+		flex-direction: column;
+		gap: 1.5em;
+		animation: active-step 0.3s ease-in-out;
+	}
+
 .input-group {
 	width: 100%;
 	display: flex;
@@ -52,46 +64,37 @@ form {
 		font-size: var(--fs-label-sm);
 	}
 
-.checkbox-group {
-	width: 100%;
-	display: flex;
-	align-items: center;
-	gap: 0.7em;
-	padding-inline: 0.5em;
+.input-hint {
+	font-size: var(--fs-text-sm);
 }
 
-	.checkbox-group input {
-		appearance: none;
-		display: grid;
-		place-content: center;
-		width: 16px;
-		height: 16px;
+.form-buttons {
+	min-width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+	.form-buttons input {
+		min-width: 45%;
+		padding-block: 0.6em;
+		border: none;
 		border-radius: var(--br-default);
-		background-color: var(--clr-base-ltr);
-		overflow: hidden;
+		background-color: var(--clr-primary);
+		font-size: var(--fs-text-md);
+		cursor: pointer;
+		transition: filter .1s ease-in-out;
 	}
 
-		.checkbox-group input::before {
-			content: "";
-			width: 16px;
-			height: 16px;
-			transform: scale(0);
-			box-shadow: inset 2em 2em var(--clr-primary);
-			transition: transform .1s ease-in-out;
+		.form-buttons input:hover {
+			filter: brightness(80%);
 		}
 
-		.checkbox-group input:checked::before {
-			transform: scale(1);
+		.form-buttons input:active {
+			filter: brightness(90%);
 		}
 
-input[name="sign-in-submit"] {
-	width: 100%;
-	padding-block: 0.6em;
-	border: none;
-	border-radius: var(--br-default);
-	background-color: var(--clr-primary);
-	font-size: var(--fs-text-md);
-	cursor: pointer;
+#btn-next {
+	margin-left: auto;
 }
 
 hr {
@@ -99,4 +102,16 @@ hr {
 	width: 100%;
 	height: 1px;
 	background-color: var(--clr-base-ltr);
+}
+
+@keyframes active-step {
+	from {
+		opacity: 0;
+		transform: skew(5deg);
+	}
+
+	to {
+		opacity: 1;
+		transform: skew(0deg);
+	}
 }
