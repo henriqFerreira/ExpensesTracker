@@ -9,31 +9,60 @@ var AccountAPI = function () {
         var validation;
         var form = document.getElementById("sign-in-form");
 
-        // TODO: Validação dos campos (client-side).
+        // TODO: Validação dos campos (Sign-in: client-side).
+        validation = new FormValidation(
+            form,
+            {
+                fields: {
+                    email: {
+                        validators: {
+                            notEmpty: {
+                                message: "O campo Email é obrigatório."
+                            },
+                            regex: {
+                                expression: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+                                message: "Esse Email não é válido."
+                            }
+                        }
+                    },
+                    password: {
+                        validators: {
+                            notEmpty: {
+                                message: "O campo Password é obrigatório."
+                            }
+                        }
+                    }
+                }
+            }
+        );
 
         $('input[name="sign-in-submit"]').on('click', function (e) {
             e.preventDefault();
 
-            var model = {}
-            model.Email = $('input[name="email"]').val();
-            model.Password = $('input[name="password"]').val();
+            validation.validate().then(function (status) {
+                if (status == "Valid") {
+                    var model = {}
+                    model.Email = $('input[name="email"]').val();
+                    model.Password = $('input[name="password"]').val();
 
-            $.ajax({
-                url: urlSignIn,
-                type: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(model),
-                success: function (data) {
+                    $.ajax({
+                        url: urlSignIn,
+                        type: 'POST',
+                        contentType: 'application/json',
+                        data: JSON.stringify(model),
+                        success: function (data) {
 
-                    // TODO: Tratamento do resultado do request no 'if' abaixo (Sign-in)
-                    if (data.Ok) {
-                        console.log(data);
-                    } else {
-                        console.log(data);
-                    }
+                            // TODO: Tratamento do resultado do request (Sign-in)
+                            if (data.Ok) {
+                                console.log(data);
+                            } else {
+                                console.log(data);
+                            }
+                        }
+                    });
                 }
-            })
-        }) 
+            });
+        });
     }
 
     var _SignUpForm = function () {
@@ -70,6 +99,33 @@ var AccountAPI = function () {
         $('#btn-next').on('click', function (e) {
             e.preventDefault();
 
+            if (this.value == "Finish") {
+
+                // TODO: Validação dos campos (Sign-up: client-side).
+
+                var model = {};
+                model.Name = $('input[name="name"]').val();
+                model.LastName = $('input[name="lastname"]').val();
+                model.Email = $('input[name="email"]').val();
+                model.Password = $('input[name="password"]').val();
+
+                $.ajax({
+                    url: urlSignUp,
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(model),
+                    success: function (data) {
+
+                        // TODO: Tratamento do resultado do request (Sign-up)
+                        if (data.Ok) {
+                            console.log(data);
+                        } else {
+                            console.log(data);
+                        }
+                    }
+                })
+            }
+
             if (currentStep != totalSteps - 1) {
                 steps[currentStep].classList.remove("active-step");
                 currentStep += 1;
@@ -87,10 +143,6 @@ var AccountAPI = function () {
             } else {
                 btnNext.value = "Finish";
             }
-        });
-
-        $('input[value="Finish"]').on('click', function (e) {
-            e.preventDefault();
         });
     }
 

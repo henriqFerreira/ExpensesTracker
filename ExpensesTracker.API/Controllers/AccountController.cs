@@ -61,6 +61,8 @@ namespace ExpensesTracker.API.Controllers
         [HttpPost("Account/SignUp")]
         public async Task<IActionResult> SignUp([FromBody] SignUpVM model)
         {
+            if (!ModelState.IsValid) return Json(new { Ok = false, Title = "Erro", Message = "Dados inválidos!" });
+
             return Json(new { Ok = false, Title = "Erro", Message = "Não implementado" });
         }
     }

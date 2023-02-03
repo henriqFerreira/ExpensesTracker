@@ -84,6 +84,15 @@ form {
 			transform: scale(1);
 		}
 
+.not-valid {
+	border: 1px solid var(--clr-alert) !important;
+}
+
+.input-error {
+	font-size: var(--fs-text-sm);
+	color: var(--clr-alert);
+}
+
 input[name="sign-in-submit"] {
 	width: 100%;
 	padding-block: 0.6em;
