@@ -41,7 +41,6 @@ var AccountAPI = function () {
 
             validation.validate().then(function (status) {
                 if (status == "Valid") {
-
                     var model = {}
                     model.Email = $('input[name="email"]').val();
                     model.Password = $('input[name="password"]').val();
@@ -61,9 +60,6 @@ var AccountAPI = function () {
                             }
                         }
                     });
-
-                } else {
-                    console.log("errado");
                 }
             });
         });
