@@ -84,6 +84,11 @@ form {
 			transform: scale(1);
 		}
 
+.input-error {
+	font-size: var(--fs-text-sm);
+	color: var(--clr-alert);
+}
+
 input[name="sign-in-submit"] {
 	width: 100%;
 	padding-block: 0.6em;
