@@ -35,6 +35,9 @@ class FormValidation {
         return true;
     }
 
+    /**
+     * Validates if input is empty or not.
+     * */
     notEmpty(input, args) {
         var message = args.message;
 
@@ -46,6 +49,9 @@ class FormValidation {
         return true;
     }
 
+    /**
+     * Validates if input value matches a regular expression.
+     * */
     regex(input, args) {
         var regex = new RegExp(args.expression);
         var message = args.message;
@@ -58,7 +64,13 @@ class FormValidation {
         return true;
     }
 
+    /**
+     * Add the error message.
+     * */
     addError(referenceElement, message) {
+
+        referenceElement[0].classList.add("not-valid");
+
         if ($(referenceElement).next(".input-error").length === 0) {
             $(`<span class="input-error">${message}</span>`).insertAfter(referenceElement);
         } else {
@@ -66,7 +78,11 @@ class FormValidation {
         }
     }
 
+    /**
+     * Remove the error message.
+     * */
     removeError(referenceElement) {
+        referenceElement[0].classList.remove("not-valid");
         $(referenceElement).next().remove(".input-error");
     }
 }
