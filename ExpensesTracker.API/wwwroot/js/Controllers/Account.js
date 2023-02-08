@@ -12,20 +12,6 @@ var AccountAPI = function () {
             form,
             {
                 fields: {
-                    name: {
-                        validators: {
-                            notEmpty: {
-                                message: "O campo Name é obrigatório."
-                            }
-                        }
-                    },
-                    lastname: {
-                        validators: {
-                            notEmpty: {
-                                message: "O campo LastName é obrigatório."
-                            }
-                        }
-                    },
                     email: {
                         validators: {
                             notEmpty: {
@@ -91,6 +77,20 @@ var AccountAPI = function () {
             form,
             {
                 fields: {
+                    name: {
+                        validators: {
+                            notEmpty: {
+                                message: "O campo Name é obrigatório."
+                            }
+                        }
+                    },
+                    lastname: {
+                        validators: {
+                            notEmpty: {
+                                message: "O campo LastName é obrigatório."
+                            }
+                        }
+                    },
                     email: {
                         validators: {
                             notEmpty: {
