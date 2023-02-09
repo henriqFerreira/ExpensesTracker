@@ -3,7 +3,7 @@
 var AccountAPI = function () {
     var urlIndex = "/Dashboard/Index/";
     var urlSignUp = "/Account/SignUp/";
-    var urlSignIn = "/Account/SignIn";
+    var urlSignIn = "/Account/SignIn/";
 
     var _SignInForm = function () {
         var form = document.getElementById("sign-in-form");

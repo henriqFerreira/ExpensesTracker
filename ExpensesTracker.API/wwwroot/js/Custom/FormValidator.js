@@ -12,21 +12,17 @@ class FormValidation {
     async validate() {
         var fields = this.options.fields;
         var validations = [];
-        var valid = "Valid";
 
         Object.keys(fields).forEach(key => {
             var input = $(`input[name="${key}"]`);
             validations.push({ field: `${key}`, result: this.validateInput(input, fields[key].validators) });
         });
 
-        validations.every(function (element) {
-            if (!element.result) {
-                valid = "Error";
-                return false;
-            }
+        var result = validations.every(function (element) {
+            return element.result;
         })
 
-        return valid;
+        return (result) ? "Valid" : "Error";
     }
 
     /**
