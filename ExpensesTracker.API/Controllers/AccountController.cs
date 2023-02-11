@@ -61,9 +61,36 @@ namespace ExpensesTracker.API.Controllers
         [HttpPost("Account/SignUp")]
         public async Task<IActionResult> SignUp([FromBody] SignUpVM model)
         {
-            if (!ModelState.IsValid) return Json(new { Ok = false, Title = "Erro", Message = "Dados inválidos!" });
+            if (!ModelState.IsValid) return Json(new { Ok = false, Title = "Erro", Message = "Dados inválidos!", Error = ModelState.Select(x => x.Value.Errors).ToList() });
 
-            return Json(new { Ok = false, Title = "Erro", Message = "Não implementado" });
+            var sucesso = false;
+
+            var user = new AspNetUser
+            {
+                UserName = model.Email,
+                Email = model.Email,
+                TwoFactorEnabled = false,
+                User = new User
+                {
+                    FirstName = model.Name,
+                    LastName = model.LastName,
+                    Email = model.Email,
+                    Password = model.Password
+                }
+            };
+
+            // TODO: Verificação se o usuário já existe
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+
+            sucesso = result.Succeeded;
+
+            return Json(new
+            {
+                Ok = sucesso,
+                Title = sucesso ? "Sucesso" : "Erro",
+                Message = sucesso ? "Usuário criado com sucesso!" : "Falha ao criar usuário!"
+            });
         }
     }
 }
