@@ -4,8 +4,10 @@ using ExpensesTracker.DAO.IService;
 using ExpensesTracker.DAO.Models;
 using ExpensesTracker.DAO.Repository;
 using ExpensesTracker.DAO.Service;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -33,15 +35,24 @@ var env = builder.Environment;
 
 var connectionString = config.GetConnectionString(env.EnvironmentName);
 
+/**
+ * Database context
+ */
 services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString));
 });
 
-services.AddDefaultIdentity<AspNetUser>(options =>
-    options.SignIn.RequireConfirmedAccount = false
-).AddEntityFrameworkStores<ApplicationDbContext>();
+/**
+ * Default identity
+ */
+services.AddDefaultIdentity<AspNetUser>()
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders();
 
+/**
+ * Authentication
+ */
 services.AddAuthentication(x =>
 {
     x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -59,6 +70,22 @@ services.AddAuthentication(x =>
     };
 });
 
+/**
+ * Cookies
+ */
+services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(options =>
+    {
+        options.ExpireTimeSpan = TimeSpan.FromDays(30);
+        options.SlidingExpiration = true;
+        options.LoginPath = "/Account/SignIn";
+        options.LogoutPath = "/Account/SignOut";
+        options.AccessDeniedPath = "/Account/AccessDenied";
+    });
+
+/**
+ * Authorization
+ */
 services.AddAuthorization(options =>
 {
     options.DefaultPolicy = new AuthorizationPolicyBuilder()

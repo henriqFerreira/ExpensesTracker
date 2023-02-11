@@ -6,12 +6,10 @@ namespace ExpensesTracker.DAO.Models.Views
     {
         [Required(ErrorMessage = "O campo {0} é obrigatório!")]
         [StringLength(35, MinimumLength = 1, ErrorMessage = "Deve conter entre 1 e 35 caracteres.")]
-        [RegularExpression(@"/ ^[a - z,.'-]+$/i")]
         public string Name { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório!")]
         [StringLength(50, MinimumLength = 1, ErrorMessage = "Deve conter entre 1 e 50 caracteres.")]
-        [RegularExpression(@"/ ^[a - z,.'-]+$/i")]
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório!")]
