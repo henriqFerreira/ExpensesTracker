@@ -97,7 +97,8 @@ services.AddAuthorization(options =>
 // Add services to the container.
 services.AddControllersWithViews();
 
-services.AddRazorPages();
+services.AddRazorPages()
+        .AddJsonOptions(options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
 services.AddSwaggerGen(c =>
 {
