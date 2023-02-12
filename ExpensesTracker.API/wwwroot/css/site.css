@@ -93,3 +93,61 @@ body {
 .icon-cards { background-image: url("../img/icons/icon-cards.svg"); }
 .icon-github { background-image: url("../img/icons/icon-github.svg"); }
 .icon-linkedin { background-image: url("../img/icons/icon-linkedin.svg"); }
+
+/*
+    Alert.js custom class
+*/
+.alert {
+    width: 320px;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    display: flex;
+    flex-direction: column;
+    gap: 1.1em;
+    padding: 1.1rem;
+    box-shadow: 0 0 5px var(--clr-base);
+    border-radius: var(--br-default);
+    background-color: var(--clr-base);
+    animation: show-alert .1s ease-in-out forwards;
+}
+
+.close-icon {
+    align-self: flex-end;
+}
+
+    .close-icon span {
+        display: block;
+        width: 18px;
+        height: 18px;
+        background-image: url("../img/icons/icon-close.svg");
+        background-position: center;
+        background-repeat: no-repeat;
+        cursor: pointer;
+    }
+
+.alert-icon {
+    width: 100%;
+    min-height: 110px;
+    text-align: center;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+    .alert-icon.alert-icon-info { background-image: url("../img/icons/icon-alert-info.svg"); }
+    .alert-icon.alert-icon-warning { background-image: url("../img/icons/icon-alert-warning.svg"); }
+    .alert-icon.alert-icon-error { background-image: url("../img/icons/icon-alert-error.svg"); }
+    .alert-icon.alert-icon-success { background-image: url("../img/icons/icon-alert-success.svg"); }
+
+.alert-title {
+    text-align: center;
+}
+
+.alert-description {
+    text-align: center;
+    font-weight: var(--fw-light);
+    margin-bottom: 1.1em;
+    padding-block: 1.1em;
+}
+
+@keyframes show-alert { to { transform: translate(-50%, -50%) scale(1); } }
