@@ -50,13 +50,15 @@ var AccountAPI = function () {
                     contentType: 'application/json',
                     data: JSON.stringify(model),
                     success: function (data) {
-
                         // TODO: Tratamento do resultado do request (Sign-in)
                         if (data.Ok) {
                             console.log(data);
                         } else {
-                            console.log(data);
+                            new Alert().show("Error", data.Title, data.Message);
                         }
+                    },
+                    error: function () {
+                        new Alert().show("Error", "Error", "Sorry, an unexpected error occurred.");
                     }
                 });
             });
