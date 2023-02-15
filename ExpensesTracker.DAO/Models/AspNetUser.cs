@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ExpensesTracker.DAO.Models
@@ -11,13 +12,20 @@ namespace ExpensesTracker.DAO.Models
 
     public static class UserExtensions
     {
-        public static AspNetUser ObterPorEmail
-            (
-                this UserManager<AspNetUser> userManager,
-                string email
-            )
+        public static AspNetUser ObterPorEmail(
+            this UserManager<AspNetUser> userManager,
+            string email,
+            string includeProperties = ""
+        )
         {
             var query = userManager.Users.AsQueryable();
+
+            foreach (var includeProperty in includeProperties.Split(
+                new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+            {
+                query = query.Include(includeProperty);
+            }
+
             return query.FirstOrDefault(x => x.Email == email);
         }
     }

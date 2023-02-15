@@ -44,15 +44,17 @@ var AccountAPI = function () {
                 model.Email = $('input[name="email"]').val();
                 model.Password = $('input[name="password"]').val();
 
+                var redirectUrl = false;
+
                 $.ajax({
                     url: urlSignIn,
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(model),
                     success: function (data) {
-                        // TODO: Tratamento do resultado do request (Sign-in)
                         if (data.Ok) {
-                            console.log(data);
+                            if (redirectUrl) window.location.href = redirectUrl
+                            else window.location.href = urlIndex;
                         } else {
                             new Alert().show("Error", data.Title, data.Message);
                         }
@@ -156,12 +158,10 @@ var AccountAPI = function () {
                         contentType: 'application/json',
                         data: JSON.stringify(model),
                         success: function (data) {
-
-                            // TODO: Tratamento do resultado do request (Sign-up)
                             if (data.Ok) {
-                                console.log(data);
+                                window.location.href = urlSignIn;
                             } else {
-                                console.log(data);
+                                new Alert().show("Error", data.Title, data.Message);
                             }
                         }
                     });
