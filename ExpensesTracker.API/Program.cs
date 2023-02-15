@@ -21,6 +21,7 @@ var services = builder.Services;
 #region Services
 
 services.AddScoped<IServiceTransactions, ServiceTransactions>();
+services.AddScoped<IServiceToken, ServiceToken>();
 
 #endregion
 
@@ -47,6 +48,7 @@ services.AddDbContext<ApplicationDbContext>(options =>
  * Default identity
  */
 services.AddDefaultIdentity<AspNetUser>()
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
@@ -66,7 +68,22 @@ services.AddAuthentication(x =>
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(config.GetValue<string>("Secret"))),
         ValidateIssuer = false,
-        ValidateAudience = false
+        ValidateAudience = false,
+        ClockSkew = TimeSpan.Zero
+    };
+    x.Events = new JwtBearerEvents
+    {
+        OnMessageReceived = context =>
+        {
+            context.Token = context.Request.Cookies["access_token"];
+
+            return Task.CompletedTask;
+        },
+        OnAuthenticationFailed = context =>
+        {
+            var response = context.HttpContext.Response;
+            return Task.CompletedTask;
+        }
     };
 });
 
@@ -90,11 +107,10 @@ services.AddAuthorization(options =>
 {
     options.DefaultPolicy = new AuthorizationPolicyBuilder()
         .RequireAuthenticatedUser()
-        .AddAuthenticationSchemes("Bearer")
+        .AddAuthenticationSchemes("Bearer", "Cookies")
         .Build();
 });
 
-// Add services to the container.
 services.AddControllersWithViews();
 
 services.AddRazorPages()
@@ -127,7 +143,7 @@ app.UseStatusCodePages(context =>
 
     if (response.StatusCode == (int)HttpStatusCode.Unauthorized)
     {
-        context.HttpContext.Response.Cookies.Append("redirectUrl", context.HttpContext.Request.Path + context.HttpContext.Request.QueryString);
+        response.Cookies.Append("redirectUrl", context.HttpContext.Request.Path + context.HttpContext.Request.QueryString);
         response.Redirect("/Account/SignIn");
     }
     else
